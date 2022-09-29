@@ -1,13 +1,16 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import { PORT, DB_URL } from './config/dotenv.js';
+import { PORT } from './config/dotenv.js';
+
+import './config/database.js';
 
 const app = express();
 
-try {
-  mongoose.connect(DB_URL).then(() => {
-    app.listen(PORT, () => { console.log(`App listening on port ${PORT}\n Press Ctrl+C to quit.`); });
-  });
-} catch (e) {
-  console.error(e);
-}
+app.listen(PORT, err => {
+  if (err) {
+    throw err;
+  } else {
+    console.log(`Server running on port: ${PORT}; 
+        --- Running on ${process.env.NODE_ENV} environment;
+        --- Press Ctrl+C to quit.`);
+  }
+});
