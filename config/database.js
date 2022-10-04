@@ -1,17 +1,16 @@
 import mongoose from 'mongoose';
-import {DB_URL} from "./dotenv.js";
+import { DB_URL } from './dotenv.js';
 
 try {
-  mongoose.set('useCreateIndex', true)
-  mongoose.connect(DB_URL)
+  mongoose.connect(DB_URL);
 } catch (err) {
-  mongoose.createConnection(DB_URL)
+  mongoose.createConnection(DB_URL);
 }
 
-mongoose.connection.once('open', () => console.log('MongoDB Running')).on('error', e => {
+mongoose.connection.once('open', () => console.log('MongoDB Running')).on('error', (e) => {
   throw e;
 });
 
-mongoose.connection.once('close', () => console.log('MongoDB connection closed')).on('error', e => {
-  throw e
-})
+mongoose.connection.once('close', () => console.log('MongoDB connection closed')).on('error', (e) => {
+  throw e;
+});

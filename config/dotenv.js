@@ -8,5 +8,6 @@ if (process.env.NODE_ENV === 'dev') {
 
 const { PORT } = process.env;
 const { DB_URL } = process.env;
+const { JWT_SECRET } = process.env;
 
-export { PORT, DB_URL };
+export { PORT, DB_URL, JWT_SECRET };
