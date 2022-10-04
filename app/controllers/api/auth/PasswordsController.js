@@ -1,13 +1,16 @@
-import RegistrationService from '../../../services/auth/RegistrationService.js';
+import PasswordService from '../../../services/auth/PasswordService.js';
 
 class PasswordsController {
   async create(req, res) {
     try {
-      res.status(201).json({
-        message: 'Sign-up successful',
-        user: req.user,
-        token: req.headers.authorization,
-      });
+      const { email } = req.body;
+      if (!email) {
+        res.status(400).json({ message: 'Incorrect email' });
+      }
+
+      const result = await PasswordService.sendInstruction(email);
+
+      res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);
     }

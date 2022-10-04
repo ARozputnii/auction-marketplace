@@ -10,7 +10,7 @@ const router = new Router();
 
 router.post('/sign_in', SessionsController.create);
 router.post('/sign_up', RegistrationsController.create);
-router.post('/password', passport.authenticate('jwt', { session: false }), PasswordsController.create);
-// // router.patch('/api/v1/password', PasswordsController.update)
+router.post('/password', PasswordsController.create);
+// router.post('/password', passport.authenticate('jwt', { session: false }), PasswordsController.create);
 
 export default router;
